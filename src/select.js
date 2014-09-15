@@ -730,9 +730,8 @@
 
         if ($select.multiple){
           scope.$watchCollection('$select.selected', function(newValue) {
-            //On v1.2.19 the 2nd and 3rd parameteres are ignored
-            //On v1.3.0-beta+ 3rd parameter (revalidate) is true, to force $parsers to recreate model
-            ngModel.$setViewValue(newValue, null, true);
+            ngModel.$setViewValue(''); //To force changes, since viewValue is checked byRef
+            ngModel.$setViewValue(newValue);
           });
           focusser.prop('disabled', true); //Focusser isn't needed if multiple
         }else{
